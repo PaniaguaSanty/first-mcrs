@@ -105,6 +105,7 @@ public class PersonService {
         return null;
     }
 
+    /*
     // Migrate person from MySQL to MongoDB
     public NewPersonResponseDto migratePerson(String dni) {
         Optional<OldPerson> oldPerson = oldRepository.findByDni(dni);
@@ -115,6 +116,8 @@ public class PersonService {
         }
         return null;
     }
+
+     */
 }
 
 
