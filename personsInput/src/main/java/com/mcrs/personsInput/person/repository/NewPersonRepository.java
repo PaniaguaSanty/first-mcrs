@@ -12,5 +12,4 @@ public interface NewPersonRepository extends MongoRepository<PersonNew, String> 
 
     Optional<PersonNew> findByDni(String dni);
 
-    List<PersonNew> findByName(String name);
 }
