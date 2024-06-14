@@ -13,7 +13,7 @@ import com.mcrs.personsInput.person.repository.NewPersonRepository;
 import com.mcrs.personsInput.person.repository.OldPersonRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.XSlf4j;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
-@XSlf4j
+@Slf4j
 @Service
 public class PersonService {
 
@@ -56,13 +56,12 @@ public class PersonService {
         return oldPersonMapper.convertToDto(updatedOldPerson);
     }
 
-    public OldPersonResponseDto deleteOldPerson(String dni) {
+    public void deleteOldPerson(String dni) {
         Optional<OldPerson> personToDelete = oldRepository.findByDni(dni);
         if (personToDelete.isPresent()) {
             oldRepository.delete(personToDelete.get());
-            return oldPersonMapper.convertToDto(personToDelete.get());
+            oldPersonMapper.convertToDto(personToDelete.get());
         }
-        return null;
     }
 
     public OldPersonResponseDto findOldPersonByDni(String dni) {
@@ -100,13 +99,12 @@ public class PersonService {
         return newPersonMapper.convertToDto(updatedNewPerson);
     }
 
-    public NewPersonResponseDto deleteNewPerson(String dni) {
+    public void deleteNewPerson(String dni) {
         Optional<PersonNew> newPerson = newRepository.findByDni(dni);
         if (newPerson.isPresent()) {
             newRepository.delete(newPerson.get());
-            return newPersonMapper.convertToDto(newPerson.get());
+            newPersonMapper.convertToDto(newPerson.get());
         }
-        return null;
     }
 
     public NewPersonResponseDto findNewPersonByDni(String dni) {
@@ -118,7 +116,6 @@ public class PersonService {
         List<PersonNew> allNewPersons = newRepository.findAll();
         return newPersonMapper.convertToDtoAllNewPersons(allNewPersons);
     }
-
 
 
     // Migrar persona de MySQL a MongoDB
