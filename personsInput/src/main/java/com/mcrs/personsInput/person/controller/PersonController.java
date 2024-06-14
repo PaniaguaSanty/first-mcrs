@@ -92,7 +92,7 @@ public class PersonController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/findAllOld")
+    @GetMapping("/findAllNew")
     public ResponseEntity<List<NewPersonResponseDto>> findAllNewPersons() {
         logger.info("Entering findAllNew method");
         List<NewPersonResponseDto> persons = personService.findAllNewPersons();
@@ -100,7 +100,7 @@ public class PersonController {
         return new ResponseEntity<>(persons, HttpStatus.FOUND);
     }
 
-    @GetMapping("/findOld/{dni}")
+    @GetMapping("/findNew/{dni}")
     public ResponseEntity<OldPersonResponseDto> findOne(@PathVariable String dni) {
         logger.info("Entering findOne method");
         return new ResponseEntity<>(personService.findOldPersonByDni(dni), HttpStatus.OK);
